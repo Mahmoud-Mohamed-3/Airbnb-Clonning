@@ -1,0 +1,65 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.cont {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .MainContainer {
+    margin: 0 auto;
+    padding: 10px 0;
+
+    @media (min-width: 575px) {
+      width: 500px;
+    }
+    @media (min-width: 767px) {
+      width: 750px;
+    }
+    @media (min-width: 991px) {
+      width: 970px;
+    }
+    @media (min-width: 1200px) {
+      width: 1170px;
+    }
+
+    .navBar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+
+
+      .navBarLogo img {
+        width: 130px;
+      }
+
+      .SearchField {
+        .ant-input-outlined {
+          border-color: #ddd;
+
+          &:hover,
+          &:focus,
+          &:focus-within {
+            border-color: #ddd;
+
+            .ant-btn-icon {
+              color: #3498db;
+            }
+          }
+
+          .ant-btn-icon {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+.ant-dropdown{
+  width: 150px;
+  text-align: center;
+  li {
+    margin-bottom: 10px;
+  }
+}

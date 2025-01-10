@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "_variables.scss" ;
+*{
+  margin :0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.mainFormContainer{
+  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  font-family: $main_font_family;
+  .formContainer{
+    text-align: center;
+    width: 400px;
+    .logo{
+        margin-bottom: 20px;
+        img{
+            width: 160px;
+        }
+    }
+    h1{
+      margin-bottom: 30px;
+    }
+    .form{
+      max-width: 100%;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      border-radius: 5px;
+      .ant-form-item{
+        margin-bottom: 13px;
+      }
+      .ant-form-item-label{
+        text-align: center;
+        font-family: $main_font_family;
+        font-size: 16px;
+      }
+    }
+  }
+  .ant-btn {
+    background-color: #ff5a5f;
+    //&:hover{
+    //  background-color: darken(#ff5a5f, 10%);
+    //}
+  }
+  .ant-input ,.ant-input-password{
+
+    &:hover,
+    &:focus,
+    &:focus-within{
+      border-color: #ff5a5f;
+    }
+  }
+  .ant-btn-color-primary{
+    color: #fff;
+    //&:hover{
+    //  background-color: darken(#ff5a5f, 10%);
+    //}
+  }
+  :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: darken(#ff5a5f, 10%);
+  }
+  :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: darken(#ff5a5f, 10%);
+    color: #fff;
+    border-color: #ff5a5f;
+  }
+  :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-outlined{
+    color :#ffffff;
+    border-color: #fff;
+  }
+  a{
+    color: #ff5a5f;
+    margin-bottom: 10px;
+    &:hover{
+      color: darken(#ff5a5f, 10%);
+    }
+  }
+}

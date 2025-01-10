@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.mainFormContainer {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Roboto";
+}
+.mainFormContainer .formContainer {
+  text-align: center;
+  width: 400px;
+}
+.mainFormContainer .formContainer .logo {
+  margin-bottom: 20px;
+}
+.mainFormContainer .formContainer .logo img {
+  width: 160px;
+}
+.mainFormContainer .formContainer h1 {
+  margin-bottom: 30px;
+}
+.mainFormContainer .formContainer .form {
+  max-width: 100%;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 5px;
+}
+.mainFormContainer .formContainer .form .ant-form-item {
+  margin-bottom: 13px;
+}
+.mainFormContainer .formContainer .form .ant-form-item-label {
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 16px;
+}
+.mainFormContainer .ant-btn {
+  background-color: #ff5a5f;
+}
+.mainFormContainer .ant-input:hover, .mainFormContainer .ant-input:focus, .mainFormContainer .ant-input:focus-within, .mainFormContainer .ant-input-password:hover, .mainFormContainer .ant-input-password:focus, .mainFormContainer .ant-input-password:focus-within {
+  border-color: #ff5a5f;
+}
+.mainFormContainer .ant-btn-color-primary {
+  color: #fff;
+}
+.mainFormContainer :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #ff272e;
+}
+.mainFormContainer :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #ff272e;
+  color: #fff;
+  border-color: #ff5a5f;
+}
+.mainFormContainer :where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-outlined {
+  color: #ffffff;
+  border-color: #fff;
+}
+.mainFormContainer a {
+  color: #ff5a5f;
+  margin-bottom: 10px;
+}
+.mainFormContainer a:hover {
+  color: #ff272e;
+}
