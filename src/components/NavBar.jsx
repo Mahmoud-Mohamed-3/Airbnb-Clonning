@@ -58,9 +58,9 @@ export default function NavBar({ user ,setUser}) {
       ]);
     }
   }, [user]); // Re-run this effect when the user changes
-
+console.log(user)
   // Determine which image to use (either user's avatar or the default image)
-  const avatarSrc = user?.avatar_url || defaultImg;
+  const avatarSrc = user?.profile_image_url|| defaultImg;
 
   return (
     <div className={"cont"}>

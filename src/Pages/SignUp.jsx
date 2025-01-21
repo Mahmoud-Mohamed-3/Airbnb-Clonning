@@ -46,7 +46,7 @@ export default function SignUp() {
     formData.append("user[last_name]", lastName);
 
     if (fileList.length > 0) {
-      formData.append("user[avatar]", fileList[0].originFileObj);
+      formData.append("user[profile_image]", fileList[0].originFileObj);
     }
 
     try {
