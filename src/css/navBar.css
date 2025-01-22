@@ -54,6 +54,16 @@
 .cont .MainContainer .navBar .navBarLogo img {
   width: 130px;
 }
+@media (max-width: 767px) {
+  .cont .MainContainer .navBar .navBarLogo img {
+    width: 120px;
+  }
+}
+@media (max-width: 575px) {
+  .cont .MainContainer .navBar .navBarLogo img {
+    width: 80px;
+  }
+}
 .cont .MainContainer .navBar .SearchField .ant-input-outlined {
   border-color: #ddd;
 }

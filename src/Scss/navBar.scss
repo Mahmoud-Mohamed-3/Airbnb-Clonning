@@ -1,11 +1,13 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 .cont {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   .MainContainer {
     margin: 0 auto;
     padding: 10px 0;
@@ -35,6 +37,13 @@
 
       .navBarLogo img {
         width: 130px;
+        @media (max-width: 767px) {
+          width: 120px;
+        }
+        @media (max-width: 575px) {
+          width: 80px;
+        }
+
       }
 
       .SearchField {
@@ -59,9 +68,11 @@
     }
   }
 }
-.ant-dropdown{
+
+.ant-dropdown {
   width: 150px;
   text-align: center;
+
   li {
     margin-bottom: 10px;
   }

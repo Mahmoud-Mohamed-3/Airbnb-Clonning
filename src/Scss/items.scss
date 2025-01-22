@@ -36,7 +36,28 @@
         width: 100%;
         object-fit: cover;
         border-radius: 8px;
+        position: relative;
       }
+
+      .cont {
+        position: relative;
+        .heart {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          font-size: 24px;
+          background-color: transparent;
+          -webkit-text-stroke-color: #fff;
+          &.added {
+            color: red;
+            fill: red;
+            svg {
+                fill: red;
+            }
+          }
+        }
+      }
+
       .propertyDetails{
         margin-top: -15px;
         max-width: 100%;
@@ -46,10 +67,24 @@
             align-items: center;
             max-width: 100%;
           margin-bottom: 8px;
-            .location {
-              font-family: $main_font_family;
-              font-size: 20px;
+          .location {
+            font-family: $main_font_family;
+            font-size: 20px;
+            width: 140px; /* Fixed width for truncation */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for truncated text */
+            white-space: nowrap; /* Prevent text from wrapping */
+            position: relative; /* Required for hover effect */
+            cursor: pointer; /* Indicates interactivity */
+            &:hover {
+              overflow: visible; /* Show full text on hover */
+              white-space: normal; /* Allow text to wrap */
+              width: auto; /* Expand to fit the full text */
+              background-color: white; /* Optional: Add background to avoid overlapping */
+              z-index: 10; /* Ensure the expanded text appears above other content */
             }
+          }
+
           .rate {
             display: flex;
             flex-direction: row;
