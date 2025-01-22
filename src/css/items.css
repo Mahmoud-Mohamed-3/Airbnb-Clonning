@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.itemsContainer {
+  max-width: 100%;
+  padding: 40px 0;
+}
+.itemsContainer .items {
+  margin: 0 auto;
+  padding: 10px 0;
+}
+@media (min-width: 575px) {
+  .itemsContainer .items {
+    width: 500px;
+  }
+}
+@media (min-width: 767px) {
+  .itemsContainer .items {
+    width: 750px;
+  }
+}
+@media (min-width: 991px) {
+  .itemsContainer .items {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .itemsContainer .items {
+    width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .itemsContainer .items {
+    width: 1390px;
+  }
+}
+.itemsContainer .items .property {
+  border-radius: 8px;
+}
+.itemsContainer .items .property .ant-image-img {
+  height: 300px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.itemsContainer .items .property .propertyDetails {
+  margin-top: -15px;
+  max-width: 100%;
+}
+.itemsContainer .items .property .propertyDetails .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 100%;
+  margin-bottom: 8px;
+}
+.itemsContainer .items .property .propertyDetails .info .location {
+  font-family: "Roboto";
+  font-size: 20px;
+}
+.itemsContainer .items .property .propertyDetails .info .rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+.itemsContainer .items .property .propertyDetails .owner, .itemsContainer .items .property .propertyDetails .price {
+  font-family: "Roboto";
+  font-size: 16px;
+  color: #8c8c8c;
+}
+.itemsContainer .items .property .propertyDetails .owner span, .itemsContainer .items .property .propertyDetails .price span {
+  font-weight: 500;
+  color: #424242;
+}
+.itemsContainer .items .property .propertyDetails .duration {
+  font-size: 16px;
+  color: #23ab23;
+  font-family: "Roboto";
+}

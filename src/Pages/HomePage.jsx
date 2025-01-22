@@ -3,6 +3,7 @@ import {useCookies} from "react-cookie";
 import {useEffect, useState} from "react";
 import {GetCurrentUserApi} from "../APIs/User/Current_user.jsx";
 import {Spin} from "antd";
+import Items from "../components/Items.jsx";
 
 export default function HomePage() {
   const [cookies, setCookie] = useCookies([]);
@@ -25,6 +26,9 @@ export default function HomePage() {
   }, [cookies.jwt]);
 // console.log(user)
   return(
+      <>
     <NavBar user={user} setUser={setUser}/>
+      <Items/>
+        </>
   )
 }
