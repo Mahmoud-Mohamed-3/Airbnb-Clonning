@@ -6,7 +6,9 @@ import { Card, Carousel, Col, Image, message, Row } from "antd";
 import { HeartFilled, HeartOutlined, StarFilled } from "@ant-design/icons";
 import { format } from "date-fns";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+import { AddToWishlistApi } from "../APIs/Wishlist/AddToWishlist.jsx";
+import { RemoveFromWishlistApi } from "../APIs/Wishlist/RemoveFromWishlist.jsx";
+import { GetAllFavourites } from "../APIs/Wishlist/GetAllFavourites.jsx";
 
 export default function Items({ user }) {
   const [properties, setProperties] = useState([]);
@@ -31,110 +33,82 @@ export default function Items({ user }) {
     fetchProperties();
   }, []);
 
-  // Add a property to favorites
-  const addFavorite = async (id) => {
+  const AddToFavourites = async (id) => {
     if (!cookies.jwt) {
       console.error("User not authenticated");
       return;
     }
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:3000/api/v1/wishlists",
-        { property_id: id },
-        { headers: { Authorization: cookies.jwt } },
-      );
-      if (response.status === 200) {
-        console.log("Favorite added successfully");
+      const response = await AddToWishlistApi(cookies.jwt, id);
+      if (response) {
+        return true;
       }
     } catch (err) {
-      console.error("An error occurred while adding favorite:", err);
-      throw err;
+      console.error("Error adding to wishlist:", err);
+      message.error("Error adding to wishlist");
     }
   };
 
-  // Remove a property from favorites
-  const removeFavorite = async (id) => {
+  const RemoveFromFavourites = async (id) => {
     if (!cookies.jwt) {
       console.error("User not authenticated");
       return;
     }
     try {
-      const response = await axios.delete(
-        `http://127.0.0.1:3000/api/v1/wishlists/${id}`,
-        {
-          headers: {
-            Authorization: cookies.jwt,
-          },
-          data: { property_id: id }, // Send property_id in the request body
-        },
-      );
-      if (response.status === 200) {
-        return response.data;
+      const response = await RemoveFromWishlistApi(cookies.jwt, id);
+      if (response) {
+        return true;
       }
     } catch (err) {
-      console.error("An error occurred while removing favorite:", err);
-      throw err; // Re-throw the error to handle it in toggleFavorite
+      console.error("Error removing from wishlist:", err);
+      message.error("Error removing from wishlist");
     }
   };
 
-  // Fetch user's favorites when the user changes
   useEffect(() => {
     if (!user) {
       return;
     }
 
     async function fetchFavorites() {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:3000/api/v1/wishlists",
-          {
-            headers: {
-              Authorization: cookies.jwt,
-            },
-          },
-        );
-        if (response.status === 200) {
-          const favorites = response.data.reduce((acc, curr) => {
-            acc[curr.property_id] = true;
-            return acc;
-          }, {});
-          setFavorites(favorites);
-        }
-      } catch (err) {
-        console.error("An error occurred while fetching favorites:", err);
+      const [data, error] = await GetAllFavourites(cookies.jwt);
+      if (data) {
+        const favorites = data.reduce((acc, curr) => {
+          acc[curr.property_id] = true;
+          return acc;
+        }, {});
+        setFavorites(favorites);
+      } else {
+        console.error("Error fetching favorites:", error);
       }
     }
 
     fetchFavorites();
   }, [user, cookies.jwt]);
 
-  // Toggle favorite state
   const toggleFavorite = async (id) => {
     const isFavorite = favorites[id];
 
-    // Optimistically update the UI
     setFavorites((prev) => ({
       ...prev,
-      [id]: !prev[id], // Toggle the favorite state
+      [id]: !prev[id],
     }));
 
     try {
       if (!isFavorite) {
-        await addFavorite(id); // Add to favorites if not already a favorite
+        await AddToFavourites(id); // Add to favorites if not already a favorite
       } else {
-        await removeFavorite(id); // Remove from favorites if already a favorite
+        await RemoveFromFavourites(id); // Remove from favorites if already a favorite
       }
     } catch (err) {
       console.error("An error occurred while toggling favorite:", err);
-      // Revert the state if the API call fails
       setFavorites((prev) => ({
         ...prev,
-        [id]: isFavorite, // Revert to the previous state
+        [id]: isFavorite,
       }));
     }
   };
 
-  // Format date range
   const formatDateRange = (startDate, endDate) => {
     const formattedStartDate = format(new Date(startDate), "ddMMM");
     const formattedEndDate = format(new Date(endDate), "ddMMM");
@@ -170,19 +144,12 @@ export default function Items({ user }) {
                             {favorites[card.id] ? ( // Use card.id instead of index
                               <HeartFilled
                                 className={"heart added"}
-                                onClick={() => {
-                                  toggleFavorite(card.id);
-
-                                  message.info("Removed from favorites");
-                                }}
+                                onClick={() => toggleFavorite(card.id)}
                               />
                             ) : (
                               <HeartOutlined
                                 className={"heart"}
-                                onClick={() => {
-                                  toggleFavorite(card.id);
-                                  message.success("Added from favorites");
-                                }}
+                                onClick={() => toggleFavorite(card.id)}
                               />
                             )}
                           </div>
