@@ -2,7 +2,7 @@ import "../css/items.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { GetProperties } from "../APIs/Properties/GetProperties.jsx";
-import { Card, Carousel, Col, Image, message, Row } from "antd";
+import { Card, Carousel, Col, Image, message, Row, Spin } from "antd";
 import { HeartFilled, HeartOutlined, StarFilled } from "@ant-design/icons";
 import { format } from "date-fns";
 import { useCookies } from "react-cookie";
@@ -19,7 +19,7 @@ export default function Items({ user }) {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const [data, error] = await GetProperties();
+        const [data, error] = await GetProperties(cookies.jwt);
         if (data) {
           setProperties(data);
         } else {
@@ -117,7 +117,21 @@ export default function Items({ user }) {
 
   // Show loading state if properties are not yet loaded
   if (!properties.length) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "calc(100vh - 110px)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div className="loader">
+          <Spin size="large" spinning={true} />
+        </div>
+      </div>
+    );
   }
 
   return (
