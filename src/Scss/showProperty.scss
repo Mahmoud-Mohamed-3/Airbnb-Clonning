@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "_variables.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.MainComponentsContainer {
+  max-width: 100%;
+
+  .PropertyContainer {
+    padding: 50px 10px;
+    margin: 0 auto;
+    width: 100%;
+    @media (min-width: 575px) {
+      width: 500px;
+    }
+    @media (min-width: 767px) {
+      width: 750px;
+    }
+    @media (min-width: 991px) {
+      width: 970px;
+    }
+    @media (min-width: 1200px) {
+      width: 1170px;
+    }
+    @media (min-width: 1400px) {
+      width: 1390px;
+    }
+    max-width: 100%;
+
+    .title {
+      font-size: 30px;
+      font-weight: 700;
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 25px;
+
+      .PropertyPlace {
+        font-weight: 400;
+        font-family: $main_font_family;
+      }
+
+    }
+
+    .ImagesContainer {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 25px;
+      max-width: 100%;
+      height: 400px;
+      @media (max-width: 992px) {
+        display: none;
+      }
+
+      .MainImage {
+        width: 48%;
+        height: 400px;
+        border-radius: 14px;
+
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 14px;
+        }
+      }
+
+      .Images {
+        width: 50%;
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 10px;
+
+        > img {
+          width: 40%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .ImageContainer {
+          width: 50%;
+
+          > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  .ImagesCarousel {
+    max-width: 100%;
+    display: none;
+    @media (max-width: 991px) {
+      display: block;
+    }
+
+    > img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+}

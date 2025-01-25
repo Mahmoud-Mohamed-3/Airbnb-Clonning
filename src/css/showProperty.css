@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.MainComponentsContainer {
+  max-width: 100%;
+}
+.MainComponentsContainer .PropertyContainer {
+  padding: 50px 10px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+}
+@media (min-width: 575px) {
+  .MainComponentsContainer .PropertyContainer {
+    width: 500px;
+  }
+}
+@media (min-width: 767px) {
+  .MainComponentsContainer .PropertyContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 991px) {
+  .MainComponentsContainer .PropertyContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .MainComponentsContainer .PropertyContainer {
+    width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .MainComponentsContainer .PropertyContainer {
+    width: 1390px;
+  }
+}
+.MainComponentsContainer .PropertyContainer .title {
+  font-size: 30px;
+  font-weight: 700;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 25px;
+}
+.MainComponentsContainer .PropertyContainer .title .PropertyPlace {
+  font-weight: 400;
+  font-family: "Roboto";
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 25px;
+  max-width: 100%;
+  height: 400px;
+}
+@media (max-width: 992px) {
+  .MainComponentsContainer .PropertyContainer .ImagesContainer {
+    display: none;
+  }
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .MainImage {
+  width: 48%;
+  height: 400px;
+  border-radius: 14px;
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .MainImage > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 14px;
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .Images {
+  width: 50%;
+  height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  row-gap: 10px;
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .Images > img {
+  width: 40%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .Images .ImageContainer {
+  width: 50%;
+}
+.MainComponentsContainer .PropertyContainer .ImagesContainer .Images .ImageContainer > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.MainComponentsContainer .ImagesCarousel {
+  max-width: 100%;
+  display: none;
+}
+@media (max-width: 991px) {
+  .MainComponentsContainer .ImagesCarousel {
+    display: block;
+  }
+}
+.MainComponentsContainer .ImagesCarousel > img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}

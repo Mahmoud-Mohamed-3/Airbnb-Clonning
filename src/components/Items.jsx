@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 import { AddToWishlistApi } from "../APIs/Wishlist/AddToWishlist.jsx";
 import { RemoveFromWishlistApi } from "../APIs/Wishlist/RemoveFromWishlist.jsx";
 import { GetAllFavourites } from "../APIs/Wishlist/GetAllFavourites.jsx";
+import { Link } from "react-router-dom";
 
 export default function Items({ user }) {
   const [properties, setProperties] = useState([]);
@@ -173,27 +174,31 @@ export default function Items({ user }) {
                   </Carousel>
                 }
               >
-                <div className={"propertyDetails"}>
-                  <div className={"info"}>
-                    <div className={"location"}>
-                      {card.city} - {card.country}
+                <Link
+                  to={`/property/${card.city}/${card.id}/${card.owner}/${card.user_id}`}
+                >
+                  <div className={"propertyDetails"}>
+                    <div className={"info"}>
+                      <div className={"location"}>
+                        {card.city} - {card.country}
+                      </div>
+                      <div className={"rate"}>
+                        <StarFilled style={{ color: "gold" }} />
+                        {card.property_rate}
+                      </div>
                     </div>
-                    <div className={"rate"}>
-                      <StarFilled style={{ color: "gold" }} />
-                      {card.property_rate}
+                    <div className={"owner"}>
+                      Stay With{" "}
+                      <span style={{ cursor: "pointer" }}>{card.owner}</span>
+                    </div>
+                    <div className={"duration"}>
+                      {formatDateRange(card.start_date, card.end_date)}
+                    </div>
+                    <div className={"price"}>
+                      <span>$ {card.price}</span> / night
                     </div>
                   </div>
-                  <div className={"owner"}>
-                    Stay With{" "}
-                    <span style={{ cursor: "pointer" }}>{card.owner}</span>
-                  </div>
-                  <div className={"duration"}>
-                    {formatDateRange(card.start_date, card.end_date)}
-                  </div>
-                  <div className={"price"}>
-                    <span>$ {card.price}</span> / night
-                  </div>
-                </div>
+                </Link>
               </Card>
             </Col>
           ))}

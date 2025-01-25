@@ -84,6 +84,7 @@
           align-items: center;
   max-width: 100%;
   margin-bottom: 8px;
+  color: #000;
 }
 .itemsContainer .items .property .propertyDetails .info .location {
   font-family: "Roboto";

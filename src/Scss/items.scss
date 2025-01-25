@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import "_variables.scss" ;
-*{
+@import "_variables.scss";
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.itemsContainer{
+
+.itemsContainer {
   max-width: 100%;
   padding: 40px 0;
-  .items{
+
+  .items {
     margin: 0 auto;
     padding: 10px 0;
 
@@ -28,10 +31,11 @@
       width: 1390px;
     }
 
-    .property{
-        //width: 230px;
+    .property {
+      //width: 230px;
       border-radius: 8px;
-      .ant-image-img{
+
+      .ant-image-img {
         height: 300px;
         width: 100%;
         object-fit: cover;
@@ -41,6 +45,7 @@
 
       .cont {
         position: relative;
+
         .heart {
           position: absolute;
           top: 5px;
@@ -48,25 +53,30 @@
           font-size: 24px;
           background-color: transparent;
           -webkit-text-stroke-color: #fff;
+
           &.added {
             color: red;
             fill: red;
+
             svg {
-                fill: red;
+              fill: red;
             }
           }
         }
       }
 
-      .propertyDetails{
+      .propertyDetails {
         margin-top: -15px;
         max-width: 100%;
+
         .info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          max-width: 100%;
           margin-bottom: 8px;
+          color: #000;
+
           .location {
             font-family: $main_font_family;
             font-size: 20px;
@@ -93,15 +103,18 @@
             font-size: 16px;
           }
         }
-        .owner , .price {
-            font-family: $main_font_family;
-            font-size: 16px;
+
+        .owner, .price {
+          font-family: $main_font_family;
+          font-size: 16px;
           color: #8c8c8c;
+
           span {
             font-weight: 500;
             color: #424242;
           }
         }
+
         .duration {
           font-size: 16px;
           color: #23ab23;
