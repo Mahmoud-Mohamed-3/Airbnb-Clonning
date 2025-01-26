@@ -3,13 +3,14 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {GetSinglePropertyApi} from "../APIs/Properties/GetSingleProperty.jsx";
 import NavBar from "../components/NavBar.jsx";
-import {Carousel, Image, Spin} from "antd";
+import {Carousel, Image, message, Spin} from "antd";
 import {GetUserWishlistedProperties} from "../APIs/User/GetUserWishlistedProperties.jsx";
 import {useCookies} from "react-cookie";
 import {GetCurrentUserApi} from "../APIs/User/Current_user.jsx";
 import {HeartFilled, HeartOutlined} from "@ant-design/icons";
 import {AddToWishlistApi} from "../APIs/Wishlist/AddToWishlist.jsx";
 import {RemoveFromWishlistApi} from "../APIs/Wishlist/RemoveFromWishlist.jsx";
+import {ReserveApi} from "../APIs/Properties/Reserve.jsx";
 
 const ShowProperty = () => {
   const {id} = useParams();
@@ -116,12 +117,15 @@ const ShowProperty = () => {
 
   return (
     <>
-      <NavBar/>
+      <NavBar user={user} setUser={setUser}/>
       <Property
         property={property}
         isWishlisted={isWishlisted}
         AddToWishlist={AddToWishlist}
         RemoveFromWishlist={RemoveFromWishlist}
+        user={user}
+        reserveApi={ReserveApi}
+        cookies={cookies}
       />
     </>
   );
@@ -137,7 +141,37 @@ function Property({
                     RemoveFromWishlist,
                     // eslint-disable-next-line react/prop-types
                     AddToWishlist,
+                    user,
+                    cookies
                   }) {
+  const AddReserve = async (id) => {
+    const [data, error] = await ReserveApi(cookies.jwt, id);
+    if (data) {
+      message.success(data.message || "Reservation successful! Waiting for confirmation.");
+    }
+    if (error) {
+      if (error.message === "Reservation request sent successfully!") {
+        message.success(error.message);
+      } else {
+        message.error(error.message || "You have already reserved this property");
+      }
+    }
+  }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate(); // Get the day (1-31)
+    const month = date.toLocaleString('default', {month: 'short'}); // Get the abbreviated month name (e.g., "Jan")
+    const year = date.getFullYear(); // Get the full year (e.g., 2023)
+    return `${day} ${month} ${year}`; // Format as "DD MMM YYYY"
+  };
+  const numberofNights = (start_date, end_date) => {
+    const start = new Date(start_date);
+    const end = new Date(end_date);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  }
+  const numberofDays = numberofNights(property.start_date, property.end_date);
   return (
     <div className={"MainComponentsContainer"}>
       <div className={"PropertyContainer"}>
@@ -146,24 +180,28 @@ function Property({
 
             {property.type_of_property} in {property.place}
           </div>
-          <div className={"favOrNot"}>
-            {isWishlisted ? (
-              <HeartFilled
-                style={{color: "red"}}
-                onClick={() => {
+          {
+            user &&
+            <div className={"favOrNot"}>
+              {isWishlisted ? (
+                <HeartFilled
+                  style={{color: "red"}}
+                  onClick={() => {
 
-                  RemoveFromWishlist(property.id);
-                }}
-              />
-            ) : (
-              <HeartOutlined
-                onClick={() => {
+                    RemoveFromWishlist(property.id);
+                  }}
+                />
+              ) : (
+                <HeartOutlined
+                  onClick={() => {
 
-                  AddToWishlist(property.id);
-                }}
-              />
-            )}
-          </div>
+                    AddToWishlist(property.id);
+                  }}
+                />
+              )}
+            </div>
+          }
+
         </div>
         <div className={"ImagesContainer"}>
           <div className={"MainImage"}>
@@ -211,7 +249,47 @@ function Property({
             })}
           </Carousel>
         </div>
+        <div className={"propertyInfo"}>
+          <div className={"leftColumn"}>se</div>
+          <div className={"rightColumn"}>
+            <div className={"priceCard"}>
+              <div className={"price"}>
+                <span>$ {property.price}</span> / night
+              </div>
+              <div className={"chickingInfo"}>
+                <table>
+                  <tr>
+                    <td>
+                      <span className={"title"}>Check In</span>
+                      <span className={"value"}>{formatDate(property.start_date)}</span>
+                    </td>
+                    <td>
+                      <span className={"title"}>Check Out</span>
+                      <span className={"value"}>{formatDate(property.end_date)}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="2"> {/* Merge cells for the second row */}
+                      <span className={"title"}>Guests</span>
+                      <span className={"value"}>{property.max_guests}</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              {user && <button className={"reserve"} onClick={() => {
+                AddReserve(property.id);
+              }}>
+                Reserve
+              </button>}
+              <div className={"totalPriceInfo"}>
+                <span> {property.price} x {numberofDays} Nights</span>
+                <span>$ {property.price * numberofDays}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   );
 }

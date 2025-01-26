@@ -1,33 +1,34 @@
 import defaultImg from "../assets/balnk_user.png";
 import "../css/navBar.css";
 import {Avatar, Button, Dropdown, Input, message} from "antd";
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useCookies} from "react-cookie";
 import {LogoutApi} from "../APIs/User/Logout.jsx";
 
 // eslint-disable-next-line react/prop-types
-export default function NavBar({ user ,setUser}) {
+export default function NavBar({user, setUser}) {
   const [items, setItems] = useState([]);
-  const [cookies, setCookies,removeCookie] = useCookies([]);
+  const [cookies, setCookies, removeCookie] = useCookies([]);
 
-    async function handelLogout (){
-      const [response,error]=await LogoutApi(cookies.jwt);
-      removeCookie('jwt');
+  async function handelLogout() {
+    const [response, error] = await LogoutApi(cookies.jwt);
+    removeCookie('jwt');
     setUser(null);
-    if(response){
+    if (response) {
       message.success("Logout successful!")
-      setInterval(()=>{
+      setInterval(() => {
         window.location.href = "/login";
-      },2000)
+      }, 2000)
     }
-    if(error){
+    if (error) {
       message.success("Logout successful!")
-      setInterval(()=>{
+      setInterval(() => {
         window.location.href = "/login";
-      },2000)
+      }, 2000)
     }
-    }
+  }
+
   useEffect(() => {
     if (user) {
       setItems([
@@ -41,6 +42,12 @@ export default function NavBar({ user ,setUser}) {
         },
         {
           key: '3',
+          label: <Link to={"/received_reservations"}>
+            Received Reservations
+          </Link>,
+        },
+        {
+          key: '4',
           label: <Button type={"primary"} danger={true} onClick={handelLogout}>Logout</Button>,
         },
       ]);
@@ -59,7 +66,7 @@ export default function NavBar({ user ,setUser}) {
     }
   }, [user]); // Re-run this effect when the user changes
   // Determine which image to use (either user's avatar or the default image)
-  const avatarSrc = user?.profile_image_url|| defaultImg;
+  const avatarSrc = user?.profile_image_url || defaultImg;
 
   return (
     <div className={"cont"}>
@@ -78,11 +85,11 @@ export default function NavBar({ user ,setUser}) {
               className={"InputField"}
             />
           </div>
-          <Dropdown trigger={["click"]} menu={{ items }} className={"ProfileTag"}>
+          <Dropdown trigger={["click"]} menu={{items}} className={"ProfileTag"}>
             <a onClick={(e) => e.preventDefault()}>
               <Avatar
                 src={avatarSrc} // Using the computed avatar source
-                style={{ backgroundColor: "#f56a00", cursor: "pointer" }}
+                style={{backgroundColor: "#f56a00", cursor: "pointer"}}
                 size={40}
                 shape={"circle"}
               />

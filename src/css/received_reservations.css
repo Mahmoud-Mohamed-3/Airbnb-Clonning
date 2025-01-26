@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.MainReceivedReservationsContainer {
+  width: 100%;
+  max-width: 100%;
+  font-family: "Roboto";
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer {
+  padding: 50px 10px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 575px) {
+  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
+    width: 500px;
+  }
+}
+@media (min-width: 767px) {
+  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 991px) {
+  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
+    width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
+    width: 1390px;
+  }
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer h1 {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation {
+  width: 100%;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  -webkit-transition: -webkit-box-shadow 0.3s ease;
+  transition: -webkit-box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation:hover {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .UserImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+  overflow: hidden;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .UserImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationDetails {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationDetails h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationDetails p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationDetails p strong {
+  font-weight: 500;
+  color: #444;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions button:first-child:hover {
+  background-color: #3d8b40;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+.MainReceivedReservationsContainer .ReceivedReservationsContainer .ReceivedReservations .ReceivedReservation .ReservationActions button:last-child:hover {
+  background-color: #ea1c0d;
+}
