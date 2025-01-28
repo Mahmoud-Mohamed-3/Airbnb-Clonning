@@ -181,12 +181,159 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 60%;
-  height: 200vh;
 }
 @media (max-width: 991px) {
   .MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn {
     width: 100%;
   }
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .title {
+  font-family: "Roboto";
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .HostsInfo {
+  font-size: 16px;
+  color: #424242;
+  margin-bottom: 12px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .rating {
+  font-size: 16px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .rating svg {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: gold;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .rating span {
+  margin-left: 10px;
+  font-weight: 800;
+  text-underline-style: dash;
+  text-underline: #424242;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .HosterInfo {
+  padding-block: 30px;
+  border-bottom: 1px solid #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .OwnerInfo {
+  font-size: 18px;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .OwnerInfo .name {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .OwnerInfo .description {
+  border: none;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 30px;
+  padding-block: 30px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 25px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating > div .icon {
+  font-size: 35px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating > div .data .header {
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating > div .details {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  color: #424242;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .description {
+  font-size: 16px;
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #424242;
+  padding-block: 30px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms {
+  padding-block: 30px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .title {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Roboto";
+  margin-bottom: 20px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .BedRoomsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .BedRoomsContainer .BedRoom {
+  width: 44%;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .BedRoomsContainer .BedRoom .card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 14px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .BedRoomsContainer .BedRoom .card .icon {
+  text-align: center;
+}
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .BedRooms .BedRoomsContainer .BedRoom .card .roomName {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  margin-bottom: 10px;
 }
 .MainComponentsContainer .PropertyContainer .propertyInfo .rightColumn {
   position: relative;

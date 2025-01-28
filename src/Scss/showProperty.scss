@@ -131,11 +131,161 @@
         display: flex;
         flex-direction: column;
         width: 60%;
-        height: 200vh;
         @media (max-width: 991px) {
           width: 100%;
         }
 
+        .UpperInfo {
+          .title {
+            font-family: $main_font_family;
+            font-size: 30px;
+            margin-bottom: 12px;
+          }
+
+          .HostsInfo {
+            font-size: 16px;
+            color: #424242;
+            margin-bottom: 12px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+          }
+
+          .rating {
+            font-size: 16px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f1f1;
+
+            svg {
+              margin-left: 10px;
+              margin-right: 10px;
+              color: gold;
+            }
+
+            span {
+              margin-left: 10px;
+              font-weight: 800;
+              text-underline-style: dash;
+              text-underline: #424242;
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .HosterInfo {
+          padding-block: 30px;
+          border-bottom: 1px solid #f1f1f1;
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+        }
+
+        .OwnerInfo {
+          font-size: 18px;
+          //font-family: $main_font_family;
+          font-family: $main_font_family;
+          font-weight: 400;
+
+          .name {
+            font-weight: 700;
+            margin-bottom: 12px;
+          }
+
+          .description {
+            border: none;
+          }
+        }
+
+        .ProcessRating {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          padding-block: 30px;
+          border-bottom: 1px solid #f1f1f1;
+
+          > div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 25px;
+
+            .icon {
+              font-size: 35px;
+            }
+
+            .data {
+              .header {
+                font-size: 18px;
+                letter-spacing: -1px;
+                font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+                font-weight: 700;
+                margin-bottom: 7px;
+              }
+            }
+
+            .details {
+              font-family: $main_font_family;
+              font-weight: 400;
+              font-size: 16px;
+              color: #424242;
+            }
+          }
+        }
+
+        .description {
+          font-size: 16px;
+          font-family: $main_font_family;
+          font-weight: 400;
+          color: #424242;
+          padding-block: 30px;
+          border-bottom: 1px solid #f1f1f1;
+        }
+
+        .BedRooms {
+          padding-block: 30px;
+          border-bottom: 1px solid #f1f1f1;
+
+          .title {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: $main_font_family;
+            margin-bottom: 20px;
+          }
+
+          .BedRoomsContainer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+
+            .BedRoom {
+              width: 44%;
+
+              .card {
+                width: 100%;
+                padding: 20px;
+                border-radius: 14px;
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+                margin-bottom: 20px;
+
+                .icon {
+                  text-align: center;
+                }
+
+                .roomName {
+                  text-align: center;
+                  font-size: 18px;
+                  font-weight: 600;
+                  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+                  margin-bottom: 10px;
+                }
+              }
+            }
+          }
+        }
       }
 
       .rightColumn {
