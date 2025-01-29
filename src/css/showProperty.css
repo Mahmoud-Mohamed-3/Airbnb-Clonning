@@ -63,6 +63,30 @@
   font-weight: 400;
   font-family: "Roboto";
 }
+.MainComponentsContainer .PropertyContainer .title .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20px;
+}
+.MainComponentsContainer .PropertyContainer .title .actions .AddYourReview {
+  font-size: 16px;
+  font-family: "Roboto";
+  font-weight: 600;
+  background-color: #ff5a5f;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+.MainComponentsContainer .PropertyContainer .title .actions .AddYourReview:hover {
+  background-color: #ff272e;
+}
 .MainComponentsContainer .PropertyContainer .ImagesContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -209,10 +233,11 @@
   margin-right: 10px;
   color: gold;
 }
-.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .rating span {
+.MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .UpperInfo .rating a {
   margin-left: 10px;
   font-weight: 800;
   text-underline-style: dash;
+  color: #000;
   text-underline: #424242;
   text-decoration: underline;
   cursor: pointer;
@@ -236,9 +261,9 @@
 }
 .MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .OwnerInfo .name {
   font-weight: 700;
-  margin-bottom: 12px;
 }
 .MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .OwnerInfo .description {
+  margin-top: -20px;
   border: none;
 }
 .MainComponentsContainer .PropertyContainer .propertyInfo .leftColumn .ProcessRating {
@@ -424,4 +449,223 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent {
+  padding-block: 20px 30px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .Rating {
+  margin: 0 auto 20px;
+  text-align: center;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .Rating span {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 34px;
+  font-weight: 600;
+  margin-inline: 10px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .Rating .text {
+  margin: 0 auto;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .Rating .text .tit {
+  text-align: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 30px;
+  margin-bottom: 7px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .Rating .text .description {
+  font-size: 16px;
+  width: 300px;
+  margin: 0 auto;
+  font-family: "Roboto";
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .FinalRating {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .FinalRating svg {
+  color: gold;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 30px;
+  margin: 0 auto;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-right: 40px;
+  border-right: 1px solid #f1f1f1;
+  margin: 0 auto;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer .title p:first-of-type {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 16px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer .title p:last-of-type {
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 600;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer .title p:last-of-type svg {
+  color: gold;
+  margin-right: 7px;
+}
+.MainComponentsContainer .PropertyContainer .RatingComponent .OverallRating .RateContainer .RateIcon {
+  text-align: center;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection {
+  padding-block: 30px;
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review {
+  width: 44%;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .NameAndImage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .NameAndImage .name {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .rate {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .rate i {
+  font-size: 20px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .content {
+  font-size: 16px;
+  font-family: "Roboto";
+  color: #424242;
+  padding: 10px 0;
+  width: 400px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .reviews .review .content button {
+  background-color: transparent;
+  border: none;
+  color: #ff5a5f;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 7px;
+}
+.MainComponentsContainer .PropertyContainer .ReviewsSection .ReadMoreBtn {
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  cursor: pointer;
+  text-decoration: underline;
+  position: absolute;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  bottom: 0;
+  right: 58%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.ant-modal-content .ant-modal-header {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  padding-bottom: 20px;
+}
+.ant-modal-content .RatingElementsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+.ant-modal-content .RatingElementsContainer .Rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.ant-modal-content .RatingElementsContainer .Rate span {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Roboto";
+}
+.ant-modal-content .ant-btn {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ff5a5f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.ant-modal-content .ant-btn:hover {
+  background-color: #ff272e;
+}
+
+:where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #ff272e;
 }

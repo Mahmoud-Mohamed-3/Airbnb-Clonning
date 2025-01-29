@@ -46,6 +46,27 @@
         font-family: $main_font_family;
       }
 
+      .actions {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        .AddYourReview {
+          font-size: 16px;
+          font-family: $main_font_family;
+          font-weight: 600;
+          background-color: #ff5a5f;
+          cursor: pointer;
+          border: none;
+          color: #fff;
+          padding: 10px 20px;
+          border-radius: 12px;
+
+          &:hover {
+            background-color: darken(#ff5a5f, 10%);
+          }
+        }
+      }
     }
 
     .ImagesContainer {
@@ -162,10 +183,11 @@
               color: gold;
             }
 
-            span {
+            a {
               margin-left: 10px;
               font-weight: 800;
               text-underline-style: dash;
+              color: #000;
               text-underline: #424242;
               text-decoration: underline;
               cursor: pointer;
@@ -189,10 +211,11 @@
 
           .name {
             font-weight: 700;
-            margin-bottom: 12px;
+
           }
 
           .description {
+            margin-top: -20px;
             border: none;
           }
         }
@@ -286,6 +309,8 @@
             }
           }
         }
+
+
       }
 
       .rightColumn {
@@ -385,7 +410,222 @@
       }
 
     }
+
+    .RatingComponent {
+      padding-block: 20px 30px;
+      border-bottom: 1px solid #f1f1f1;
+
+      .Rating {
+        margin: 0 auto 20px;
+        text-align: center;
+
+
+        span {
+          font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+          font-size: 34px;
+          font-weight: 600;
+          margin-inline: 10px;
+        }
+
+        .text {
+          margin: 0 auto;
+
+          .tit {
+            text-align: center;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 30px;
+            margin-bottom: 7px;
+          }
+
+          .description {
+            font-size: 16px;
+            width: 300px;
+            margin: 0 auto;
+            font-family: $main_font_family;
+          }
+        }
+      }
+
+      .FinalRating {
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        font-size: 25px;
+        font-weight: 600;
+
+        margin-bottom: 10px;
+
+        svg {
+          color: gold;
+        }
+      }
+
+      .OverallRating {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 0 auto;
+
+
+        .RateContainer {
+          display: flex;
+          flex-direction: column;
+          padding-right: 40px;
+          border-right: 1px solid #f1f1f1;
+          margin: 0 auto;
+
+
+          .title {
+
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            p:first-of-type {
+              font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+              font-size: 16px;
+            }
+
+            p:last-of-type {
+              font-family: $main_font_family;
+              font-size: 18px;
+              font-weight: 600;
+
+              svg {
+                color: gold;
+                margin-right: 7px;
+              }
+            }
+          }
+
+          .RateIcon {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .ReviewsSection {
+      padding-block: 30px;
+      border-bottom: 1px solid #f1f1f1;
+      position: relative;
+
+
+      .reviews {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .review {
+          width: 44%;
+
+          .NameAndImage {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            .name {
+              font-size: 18px;
+              font-weight: 600;
+              font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace
+            }
+          }
+
+          .rate {
+            margin-left: 20px;
+            margin-top: 10px;
+
+            i {
+              font-size: 20px;
+            }
+          }
+
+          .content {
+            font-size: 16px;
+            font-family: $main_font_family;
+            color: #424242;
+            padding: 10px 0;
+            width: 400px;
+
+            button {
+              background-color: transparent;
+              border: none;
+              color: #ff5a5f;
+              font-size: 16px;
+              font-weight: 600;
+              cursor: pointer;
+              margin-left: 7px;
+            }
+          }
+        }
+      }
+
+      .ReadMoreBtn {
+        border: none;
+        background-color: transparent;
+        font-size: 18px;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+        cursor: pointer;
+        text-decoration: underline;
+        position: absolute;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        bottom: 0;
+        right: 58%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }
 
+.ant-modal-content {
 
+  .ant-modal-header {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding-bottom: 20px;
+  }
+
+  .RatingElementsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .Rate {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      font-size: 16px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+      span {
+        font-size: 30px;
+        font-weight: 700;
+        font-family: $main_font_family;
+      }
+    }
+  }
+
+  .ant-btn {
+    font-family: $main_font_family;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff5a5f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#ff5a5f, 10%);
+    }
+  }
+}
+
+:where(.css-dev-only-do-not-override-161f05s).ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: darken(#ff5a5f, 10%);
+}
