@@ -7,6 +7,7 @@ import EditPass from "../Pages/EditPassPage.jsx";
 import ConfirmPage from "../Pages/ConfirmPage.jsx";
 import ShowProperty from "../Pages/ShowProperty.jsx";
 import ReceivedReservations from "../Pages/ReceivedReservations.jsx";
+import ConfirmReservationPage from "../Pages/ConfirmReservationPage.jsx";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +23,11 @@ export default function AppRoutes() {
         element={<ShowProperty/>}
       />
       <Route path={"/received_reservations"} element={<ReceivedReservations/>}/>
+      {/*<Route path={"/reservation/:property_id/start_date=:start_date/:end_date/:total_price"}*/}
+      {/*       element={<ConfirmReservationPage/>}/>*/}
+
+      <Route path="/reservation/:property_id" element={<ConfirmReservationPage/>}/>
+
     </Routes>
   );
 }

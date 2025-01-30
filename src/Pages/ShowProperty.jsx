@@ -1,20 +1,21 @@
 import "../css/showProperty.css";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {GetSinglePropertyApi} from "../APIs/Properties/GetSingleProperty.jsx";
 import NavBar from "../components/NavBar.jsx";
-import {Avatar, Button, Carousel, Image, message, Modal, Rate, Spin} from "antd";
+import {Avatar, Button, Carousel, DatePicker, Image, message, Modal, Rate, Spin} from "antd";
 import {GetUserWishlistedProperties} from "../APIs/User/GetUserWishlistedProperties.jsx";
 import {useCookies} from "react-cookie";
 import {GetCurrentUserApi} from "../APIs/User/Current_user.jsx";
 import {CalendarOutlined, HeartFilled, HeartOutlined, KeyOutlined, SketchOutlined, StarFilled} from "@ant-design/icons";
 import {AddToWishlistApi} from "../APIs/Wishlist/AddToWishlist.jsx";
 import {RemoveFromWishlistApi} from "../APIs/Wishlist/RemoveFromWishlist.jsx";
-import {ReserveApi} from "../APIs/Properties/Reserve.jsx";
 import {GetPropertyOwnerApi} from "../APIs/User/GetPropertyOwner.jsx";
 import {GetPropertyReviewsApi} from "../APIs/Properties/GetPropertyReviews.jsx";
 import defaultImage from "../assets/balnk_user.png"
 import {AddReviewApi} from "../APIs/Reviews/AddReview.jsx";
+
+import dayjs from 'dayjs';
 
 const ShowProperty = () => {
   const {id} = useParams();
@@ -470,75 +471,91 @@ function BedRooms({property}) {
   )
 }
 
-function RightColumn({property, user, cookies}) {
-  const numberofNights = (start_date, end_date) => {
-    const start = new Date(start_date);
-    const end = new Date(end_date);
-    const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  }
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate(); // Get the day (1-31)
-    const month = date.toLocaleString('default', {month: 'short'}); // Get the abbreviated month name (e.g., "Jan")
-    const year = date.getFullYear(); // Get the full year (e.g., 2023)
-    return `${day} ${month} ${year}`; // Format as "DD MMM YYYY"
-  };
-  const numberofDays = numberofNights(property.start_date, property.end_date);
+const {RangePicker} = DatePicker;
 
-  const AddReserve = async (id) => {
-    const [data, error] = await ReserveApi(cookies.jwt, id);
-    if (data) {
-      message.success(data.message || "Reservation successful! Waiting for confirmation.");
-    }
-    if (error) {
-      if (error.message === "Reservation request sent successfully!") {
-        message.success(error.message);
-      } else {
-        message.error(error.message || "You have already reserved this property");
-      }
-    }
-  }
+function RightColumn({property, user, cookies}) {
+  const [startDate, setStartDate] = useState(dayjs(property.start_date));
+  const [endDate, setEndDate] = useState(dayjs(property.end_date));
+  const navigate = useNavigate();
+
+  const numberOfNights = (start, end) => end.diff(start, 'day');
+  const numberOfDays = numberOfNights(startDate, endDate);
+
+  const formatDate = (date) => date.format("YYYY-MM-DD");
+
+  const disabledStartDate = (current) => {
+    return (
+      current && (current.isBefore(dayjs(property.start_date), 'day') || current.isAfter(dayjs(property.end_date), 'day'))
+    );
+  };
+
+  const disabledEndDate = (current) => {
+    return (
+      current && (current.isBefore(startDate, 'day') || current.isAfter(dayjs(property.end_date), 'day'))
+    );
+  };
+
+
   return (
-    <div className={"rightColumn"}>
-      <div className={"priceCard"}>
-        <div className={"price"}>
+    <div className="rightColumn">
+      <div className="priceCard">
+        <div className="price">
           <span>$ {property.price}</span> / night
         </div>
-        <div className={"chickingInfo"}>
+        <div className="checkingInfo">
           <table>
+            <tbody>
             <tr>
               <td>
-                <span className={"title"}>Check In</span>
-                <span className={"value"}>{formatDate(property.start_date)}</span>
+                <span className="title">Check In</span>
+                <DatePicker
+                  value={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  disabledDate={disabledStartDate}
+                  format="DD-MM-YYYY"
+                />
               </td>
               <td>
-                <span className={"title"}>Check Out</span>
-                <span className={"value"}>{formatDate(property.end_date)}</span>
+                <span className="title">Check Out</span>
+                <DatePicker
+                  value={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  disabledDate={disabledEndDate}
+                  format="DD-MM-YYYY"
+                />
               </td>
             </tr>
             <tr>
-              <td colSpan="2"> {/* Merge cells for the second row */}
-                <span className={"title"}>Guests</span>
-                <span className={"value"}>{property.max_guests}</span>
+              <td colSpan="2">
+                <span className="title">Guests</span>
+                <span className="value">{property.max_guests}</span>
               </td>
             </tr>
+            </tbody>
           </table>
         </div>
-        {user && <button className={"reserve"} onClick={() => {
-          AddReserve(property.id);
-        }}>
-          Reserve
-        </button>}
-        <div className={"totalPriceInfo"}>
-          <span> {property.price} x {numberofDays} Nights</span>
-          <span>$ {property.price * numberofDays}</span>
+        {user && (
+          <button
+            className="reserve"
+            onClick={() =>
+              navigate(
+                `/reservation/${property.id}?start_date=${formatDate(startDate)}&end_date=${formatDate(endDate)}&total_price=${property.price * (numberOfDays + 1)}&number_of_days=${numberOfDays + 1}`,
+              )
+            }
+
+          >
+            Reserve
+          </button>
+        )}
+        <div className="totalPriceInfo">
+          <span>{property.price} x {numberOfDays + 1} Nights</span>
+          <span>$ {property.price * (numberOfDays + 1)}</span>
         </div>
       </div>
     </div>
-  )
+  );
 }
+
 
 function RatingComponent({property}) {
   return (

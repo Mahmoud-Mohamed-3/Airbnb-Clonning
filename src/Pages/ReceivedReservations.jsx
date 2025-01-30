@@ -38,6 +38,9 @@ export default function ReceivedReservations() {
   const handleConfirm = (reservationId) => {
     message.success("Reservation confirmed");
     Response(reservationId, "approved");
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 
   const handleReject = (reservationId) => {
@@ -71,11 +74,15 @@ export default function ReceivedReservations() {
                   {reservation.property.country}
                 </p>
                 <p>
-                  <strong>Price:</strong> ${reservation.property.price}
+                  <strong>Price:</strong> ${reservation.total_price}
                 </p>
                 <p>
                   <strong>Start Date:</strong>{" "}
-                  {new Date(reservation.property.start_date).toLocaleDateString()}
+                  {new Date(reservation.start_date).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>End Date:</strong>{" "}
+                  {new Date(reservation.end_date).toLocaleDateString()}
                 </p>
                 <p>
                   <strong>Status:</strong> {reservation.status}
