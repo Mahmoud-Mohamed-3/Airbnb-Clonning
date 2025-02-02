@@ -12,21 +12,19 @@ export default function NavBar({user, setUser}) {
   const [cookies, setCookies, removeCookie] = useCookies([]);
 
   async function handelLogout() {
-    const [response, error] = await LogoutApi(cookies.jwt);
-    removeCookie('jwt');
+    await LogoutApi(cookies.jwt); // Call API (assuming it logs out successfully)
+
+    removeCookie("jwt", {path: "/", domain: "localhost"});
     setUser(null);
-    if (response) {
-      message.success("Logout successful!")
-      setInterval(() => {
-        window.location.href = "/login";
-      }, 2000)
-    }
-    if (error) {
-      message.success("Logout successful!")
-      setInterval(() => {
-        window.location.href = "/login";
-      }, 2000)
-    }
+    // Force expire cookie if necessary
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost";
+
+    setTimeout(() => {
+      console.log("JWT after logout:", cookies.jwt); // Debugging
+      window.location.href = "/login"; // Redirect after ensuring removal
+    }, 500);
+
+    message.success("Logout successful!");
   }
 
   useEffect(() => {
@@ -34,20 +32,12 @@ export default function NavBar({user, setUser}) {
       setItems([
         {
           key: '1',
-          label: 'Profile',
-        },
-        {
-          key: '2',
-          label: 'Settings',
-        },
-        {
-          key: '3',
-          label: <Link to={"/received_reservations"}>
-            Received Reservations
+          label: <Link to={`/profile/${user?.id}`}>
+            Profile
           </Link>,
         },
         {
-          key: '4',
+          key: '2',
           label: <Button type={"primary"} danger={true} onClick={handelLogout}>Logout</Button>,
         },
       ]);
@@ -85,7 +75,7 @@ export default function NavBar({user, setUser}) {
               className={"InputField"}
             />
           </div>
-          <Dropdown trigger={["click"]} menu={{items}} className={"ProfileTag"}>
+          {!user && <Dropdown trigger={["click"]} menu={{items}} className={"ProfileTag"}>
             <a onClick={(e) => e.preventDefault()}>
               <Avatar
                 src={avatarSrc} // Using the computed avatar source
@@ -94,7 +84,16 @@ export default function NavBar({user, setUser}) {
                 shape={"circle"}
               />
             </a>
-          </Dropdown>
+          </Dropdown>}
+          {user && <Link to={`/profile/${user?.id}`}>
+            <Avatar
+              src={avatarSrc} // Using the computed avatar source
+              style={{backgroundColor: "#f56a00", cursor: "pointer"}}
+              size={40}
+              shape={"circle"}
+            />
+          </Link>}
+
         </div>
       </div>
     </div>

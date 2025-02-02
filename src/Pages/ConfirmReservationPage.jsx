@@ -51,6 +51,7 @@ function ConfirmReservationPage() {
 }
 
 function Components({start_date, end_date, total_price, number_of_days, property_id, cookies}) {
+
   return (
     <div className={"MainComponentsContainer"}>
       <div className={"PaymentsContainer"}>
@@ -64,6 +65,7 @@ function Components({start_date, end_date, total_price, number_of_days, property
 }
 
 function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
+  const [isDisabled, setIsDisabled] = useState(false);
   const formatDate = (date) => {
     return dayjs(date).format("DD-MM-YYYY");
   }// Ensure the date is in dayjs format and then format it
@@ -71,8 +73,9 @@ function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
     return dayjs(date).format("YYYY-MM-DD"); // Ensure the date is in dayjs format and then format it
   }
 
-  const AddReservation = async (coo) => {
+  const AddReservation = async () => {
     try {
+      setIsDisabled(true);
       const [response, error] = await ReserveApi(cookies, property_id, {
         start_date: formatSubmitDate(start_date),
         end_date: formatSubmitDate(end_date),
@@ -81,13 +84,15 @@ function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
       });
       if (response) {
         message.success("Reservation sending successfully");
+        setIsDisabled(false);
       }
       if (error) {
         if (error.message === "Reservation request sent successfully!") {
           message.success("Reservation request sent successfully!");
         } else {
-          message.error(error.message);
+          message.error("You Have Already Reserved This Property");
         }
+        setIsDisabled(false);
       }
     } catch (err) {
       console.error("Error sending reservation:", err);
@@ -151,7 +156,7 @@ function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
         </div>
       </div>
 
-      <button className={"confirmButton"} onClick={AddReservation}>
+      <button className={"confirmButton"} onClick={AddReservation} disabled={isDisabled}>
         Confirm & Pay
       </button>
     </div>

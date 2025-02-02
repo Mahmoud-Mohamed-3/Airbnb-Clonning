@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "_variables.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.UserProfileMainContainer {
+  width: 80%;
+  max-width: 100%;
+
+  .UserProfileContainer {
+    padding-top: 50px;
+    width: 80%;
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .UserProfileImageContainer {
+      display: flex;
+      flex-direction: column;
+      padding-top: 50px;
+      gap: 40px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      align-items: center;
+    }
+
+    .UserNameContainer {
+      padding-top: 30px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      font-size: 22px;
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      align-items: center;
+
+      .InputsLayout {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        padding-bottom: 20px;
+      }
+
+      .ant-input {
+        width: 200px;
+        height: 40px;
+        font-size: 20px;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+        &:focus {
+          border-color: $main_color;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+
+        &:hover {
+          border-color: $main_color;
+        }
+
+        &:focus-within {
+          border-color: $main_color;
+        }
+      }
+    }
+
+    .UpdateButton {
+      padding-top: 40px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      text-align: center;
+
+      button {
+        border: none;
+        background-color: $main_color;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 700;
+        width: 200px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #333;
+        }
+      }
+    }
+
+    .RemoveAccount {
+      padding-top: 50px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      text-align: center;
+
+    }
+  }
+}
+
+

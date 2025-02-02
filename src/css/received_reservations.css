@@ -10,42 +10,18 @@
   width: 100%;
   max-width: 100%;
   font-family: "Roboto";
+  margin: 0 auto;
+  padding-top: 20px;
 }
 .MainReceivedReservationsContainer .ReceivedReservationsContainer {
   padding: 50px 10px;
   margin: 0 auto;
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #ddd;
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-@media (min-width: 575px) {
-  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
-    width: 500px;
-  }
-}
-@media (min-width: 767px) {
-  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
-    width: 750px;
-  }
-}
-@media (min-width: 991px) {
-  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
-    width: 1170px;
-  }
-}
-@media (min-width: 1400px) {
-  .MainReceivedReservationsContainer .ReceivedReservationsContainer {
-    width: 1390px;
-  }
 }
 .MainReceivedReservationsContainer .ReceivedReservationsContainer h1 {
   font-size: 30px;

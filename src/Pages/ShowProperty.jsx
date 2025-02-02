@@ -926,6 +926,7 @@ function Reviews({propertyReviews, visibleCount}) {
     }));
   };
   const [expandedReviews, setExpandedReviews] = useState({});
+
   return (
     <div className="reviews">
       {propertyReviews.slice(0, visibleCount).map((review, index) => {
@@ -939,7 +940,7 @@ function Reviews({propertyReviews, visibleCount}) {
                 size={50}
               />
               <div className="name">
-                {review.review_writer.first_name} {review.review_writer.last_name}
+                {review.review_writer.full_name}
               </div>
             </div>
             <div className="rate">

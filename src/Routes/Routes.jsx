@@ -8,6 +8,10 @@ import ConfirmPage from "../Pages/ConfirmPage.jsx";
 import ShowProperty from "../Pages/ShowProperty.jsx";
 import ReceivedReservations from "../Pages/ReceivedReservations.jsx";
 import ConfirmReservationPage from "../Pages/ConfirmReservationPage.jsx";
+import UserProfilePageLayout from "../Pages/UserProfilePageLayout.jsx";
+import UserProfile from "../Pages/UserProfile.jsx";
+import Wishlist from "../Pages/Wishlist.jsx";
+import YourRequests from "../Pages/Requests.jsx";
 
 export default function AppRoutes() {
   return (
@@ -22,12 +26,13 @@ export default function AppRoutes() {
         path="/property/:city/:id/:owner/:user_id"
         element={<ShowProperty/>}
       />
-      <Route path={"/received_reservations"} element={<ReceivedReservations/>}/>
-      {/*<Route path={"/reservation/:property_id/start_date=:start_date/:end_date/:total_price"}*/}
-      {/*       element={<ConfirmReservationPage/>}/>*/}
-
       <Route path="/reservation/:property_id" element={<ConfirmReservationPage/>}/>
-
+      <Route element={<UserProfilePageLayout/>}>
+        <Route path={'/profile/:id'} element={<UserProfile/>}/>
+        <Route path={'/profile/received_reservations/:id'} element={<ReceivedReservations/>}/>
+        <Route path={'/profile/wishlist/:id'} element={<Wishlist/>}/>
+        <Route path={"/profile/requests/:id"} element={<YourRequests/>}/>
+      </Route>
     </Routes>
   );
 }

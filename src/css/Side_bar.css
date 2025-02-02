@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.SideBarContainer {
+  padding: 20px 10px;
+  height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+.SideBarContainer .userImage {
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 22px;
+  height: 70px;
+}
+.SideBarContainer .LinksContainer {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: calc(100% - 70px);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.SideBarContainer .LinksContainer .Links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+.SideBarContainer .LinksContainer .Links .Link {
+  text-align: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.SideBarContainer .LinksContainer .Links .Link.active a {
+  color: #ff5a5f;
+}
+.SideBarContainer .LinksContainer .Links .Link a {
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.SideBarContainer .LinksContainer .Links .Link a:hover {
+  color: #ff5a5f;
+}
+.SideBarContainer .Assets {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+.SideBarContainer .Assets .BackToHome {
+  background-color: #ff5a5f;
+  border: none;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  width: 80%;
+  text-align: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  margin: 0 auto;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.SideBarContainer .Assets .BackToHome:hover {
+  background-color: #333;
+}
+.SideBarContainer .Assets .BackToHome a {
+  text-decoration: none;
+  color: #fff;
+}
+.SideBarContainer .Assets .LogoutButton {
+  margin: 0 auto;
+  background-color: #ff5a5f;
+  border: none;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  width: 80%;
+  text-align: center;
+}
+.SideBarContainer .Assets .LogoutButton:hover {
+  background-color: #333;
+}
