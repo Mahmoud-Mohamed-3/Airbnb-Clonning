@@ -1,27 +1,26 @@
 import defaultImg from "../assets/balnk_user.png";
 import "../css/navBar.css";
-import {Avatar, Button, Dropdown, Input, message} from "antd";
+import {Avatar, Button, Dropdown, message} from "antd";
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useCookies} from "react-cookie";
 import {LogoutApi} from "../APIs/User/Logout.jsx";
 
 // eslint-disable-next-line react/prop-types
-export default function NavBar({user, setUser}) {
+export default function NavBar({user, setUser, setState}) {
   const [items, setItems] = useState([]);
   const [cookies, setCookies, removeCookie] = useCookies([]);
+  const navigate = useNavigate();
 
   async function handelLogout() {
-    await LogoutApi(cookies.jwt); // Call API (assuming it logs out successfully)
+    await LogoutApi(cookies.jwt);
 
     removeCookie("jwt", {path: "/", domain: "localhost"});
     setUser(null);
-    // Force expire cookie if necessary
     document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost";
 
     setTimeout(() => {
-      console.log("JWT after logout:", cookies.jwt); // Debugging
-      window.location.href = "/login"; // Redirect after ensuring removal
+      window.location.href = "/login";
     }, 500);
 
     message.success("Logout successful!");
@@ -46,7 +45,6 @@ export default function NavBar({user, setUser}) {
         {
           key: '1',
           label: <Link to={"/sign_up"}>Sign Up</Link>
-
         },
         {
           key: '2',
@@ -54,9 +52,13 @@ export default function NavBar({user, setUser}) {
         },
       ]);
     }
-  }, [user]); // Re-run this effect when the user changes
-  // Determine which image to use (either user's avatar or the default image)
+  }, [user]);
+
   const avatarSrc = user?.profile_image_url || defaultImg;
+
+  useEffect(() => {
+    sessionStorage.setItem("state", "");
+  }, []);
 
   return (
     <div className={"cont"}>
@@ -68,32 +70,41 @@ export default function NavBar({user, setUser}) {
               alt="Logo"
             />
           </div>
-          <div className={"SearchField"}>
-            <Input.Search
-              placeholder="Search"
-              allowClear={true}
-              className={"InputField"}
-            />
-          </div>
           {!user && <Dropdown trigger={["click"]} menu={{items}} className={"ProfileTag"}>
             <a onClick={(e) => e.preventDefault()}>
               <Avatar
-                src={avatarSrc} // Using the computed avatar source
+                src={avatarSrc}
                 style={{backgroundColor: "#f56a00", cursor: "pointer"}}
                 size={40}
                 shape={"circle"}
               />
             </a>
           </Dropdown>}
-          {user && <Link to={`/profile/${user?.id}`}>
-            <Avatar
-              src={avatarSrc} // Using the computed avatar source
-              style={{backgroundColor: "#f56a00", cursor: "pointer"}}
-              size={40}
-              shape={"circle"}
-            />
-          </Link>}
-
+          {user &&
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+              gap: "50px",
+            }}>
+              <button className={"CreateNewBtn"} onClick={() => {
+                sessionStorage.setItem("state", "create");
+                setState("create");
+                setTimeout(() => {
+                  navigate("/property/create_new");
+                }, 1000);
+              }}>
+                Create A New Property
+              </button>
+              <Link to={`/profile/${user?.id}`}>
+                <Avatar
+                  src={avatarSrc}
+                  style={{backgroundColor: "#f56a00", cursor: "pointer"}}
+                  size={40}
+                  shape={"circle"}
+                />
+              </Link>
+            </div>}
         </div>
       </div>
     </div>

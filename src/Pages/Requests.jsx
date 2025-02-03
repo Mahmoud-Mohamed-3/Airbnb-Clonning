@@ -11,7 +11,7 @@ export default function YourRequests() {
   const [filteredRequests, setFilteredRequests] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState("all");
-  const pageSize = 5; // Number of requests per page
+  const pageSize = 5;
 
   useEffect(() => {
     if (cookies.jwt) {
@@ -140,7 +140,6 @@ export default function YourRequests() {
         ))}
       </div>
 
-      {/* Pagination */}
       {filteredRequests.length > pageSize && (
         <div style={{display: "flex", justifyContent: "center", marginTop: "20px"}}>
           <Pagination current={currentPage} total={filteredRequests.length} pageSize={pageSize}

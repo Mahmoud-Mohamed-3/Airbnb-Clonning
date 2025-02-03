@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {Button, Form, Image, Input, message, Modal, Upload} from "antd";
 import {useCookies} from "react-cookie";
 import {useOutletContext} from "react-router-dom";
-import default_img from "../assets/balnk_user.png";
 import "../css/User_profile.css";
 import axios from "axios";
 import {RemoveAccountApi} from "../APIs/User/RemoveAccount.jsx";
@@ -13,8 +12,9 @@ export default function UserProfile() {
   const [cookies, removeCookie] = useCookies([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [fileList, setFileList] = useState([]); // Image file state
-  const [profileImage, setProfileImage] = useState(default_img); // Profile Image URL
+  const [fileList, setFileList] = useState([]);
+  import default_img from "../assets/balnk_user.png"
+  const [profileImage, setProfileImage] = useState(default_img);
   useEffect(() => {
     if (cookies.jwt) {
       document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/profile; domain=localhost";
@@ -29,21 +29,17 @@ export default function UserProfile() {
     }
   }, [UserProfile]);
 
-  // Handle file change
   const handleFileChange = ({fileList: newFileList}) => {
-    // If there's a new file selected, update the profile image preview
     if (newFileList.length > 0) {
       const newImageUrl = URL.createObjectURL(newFileList[0].originFileObj);
-      setProfileImage(newImageUrl); // Update the profile image preview
+      setProfileImage(newImageUrl);
     }
 
-    setFileList(newFileList); // Update fileList state with the new file
+    setFileList(newFileList);
   };
-
-  // Validate file before upload
   const beforeUpload = (file) => {
     const isImage = file.type === "image/jpeg" || file.type === "image/png";
-    const isLt3M = file.size / 1024 / 1024 < 3; // File size < 3MB
+    const isLt3M = file.size / 1024 / 1024 < 3;
 
     if (!isImage) {
       message.error("You can only upload JPG/PNG files!");
@@ -52,42 +48,40 @@ export default function UserProfile() {
       message.error("File must be smaller than 3MB!");
     }
 
-    return isImage && isLt3M; // Only allow files that pass all validations
+    return isImage && isLt3M;
   };
 
-  // Update Profile API Call
   const handleUpdateProfile = async () => {
     if (!userInfo) return;
 
-    // Create FormData to send all fields
     const formData = new FormData();
 
-    // Always send first_name and last_name, even if they haven't changed
     formData.append("user[first_name]", firstName || userInfo.first_name);
     formData.append("user[last_name]", lastName || userInfo.last_name);
 
-    // If a new profile image is selected, append it
     if (fileList.length > 0) {
-      formData.append("user[profile_image]", fileList[0].originFileObj); // Actual file
+      formData.append("user[profile_image]", fileList[0].originFileObj);
     } else {
-      // If no new image is selected, send the existing image's URL (if needed by backend)
       formData.append("user[profile_image_url]", userInfo.profile_image_url);
     }
 
     try {
       const response = await axios.post(
-        `http://127.0.0.1:3000/api/v1/users/${userInfo.id}/update_profile`,  // Your API URL
+        `http://127.0.0.1:3000/api/v1/users/${userInfo.id}/update_profile`,
         formData,
         {
           headers: {
-            'Authorization': `${cookies.jwt}`,  // Token for authentication
+            'Authorization': `${cookies.jwt}`,
           }
         }
       );
 
       if (response.data) {
-        setUserProfile(response.data); // Update global user profile context
+        setUserProfile(response.data);
         message.success("Profile updated successfully!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000)
       } else {
         message.error("Failed to update profile!");
         console.error("Error updating profile:", response.error);
@@ -110,19 +104,15 @@ export default function UserProfile() {
           message.success("Account removed successfully");
           removeCookie("jwt", {path: "/", domain: "localhost"});
 
-          // Force expire cookie if necessary
           document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost";
-
           setTimeout(() => {
-            console.log("JWT after logout:", cookies.jwt); // Debugging
-            window.location.href = "/login"; // Redirect after ensuring removal
+            window.location.href = "/login";
           }, 500);
         } else {
           message.error(error.message || "Failed to remove account");
         }
       },
       onCancel: () => {
-        // Optionally handle cancel action (e.g., logging or other actions)
         window.location.reload();
       },
     });

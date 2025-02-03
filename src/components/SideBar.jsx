@@ -9,7 +9,7 @@ import {LogoutApi} from "../APIs/User/Logout.jsx";
 export default function SideBar({UserProfile, setUserProfile}) {
   const [cookies, removeCookie] = useCookies([]);
   const {id} = useParams();
-  const location = useLocation(); // Get current location
+  const location = useLocation();
   const [activeLink, setActiveLink] = useState(
     sessionStorage.getItem("activeLink") || "Profile"
   );
@@ -22,25 +22,26 @@ export default function SideBar({UserProfile, setUserProfile}) {
       setActiveLink("Reservations");
     } else if (path.includes("requests")) {
       setActiveLink("Requests");
+    } else if (path.includes("properties")) {
+      setActiveLink("Properties");
     } else if (path.includes("profile")) {
       setActiveLink("Profile");
     }
   }, [location.pathname]);
 
-  // Save activeLink to session storage whenever it changes
   useEffect(() => {
     sessionStorage.setItem("activeLink", activeLink);
   }, [activeLink]);
 
   async function handelLogout() {
-    await LogoutApi(cookies.jwt); // Call API (assuming it logs out successfully)
+    await LogoutApi(cookies.jwt);
     removeCookie("jwt", {path: "/", domain: "localhost"});
 
     document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost";
 
     setTimeout(() => {
-      console.log("JWT after logout:", cookies.jwt); // Debugging
-      window.location.href = "/login"; // Redirect after ensuring removal
+      console.log("JWT after logout:", cookies.jwt);
+      window.location.href = "/login";
     }, 500);
 
     message.success("Logout successful!");
@@ -100,6 +101,15 @@ export default function SideBar({UserProfile, setUserProfile}) {
             onClick={() => setActiveLink("Requests")}
           >
             <Link to={`/profile/requests/${UserProfile.id}`}>Requests</Link>
+          </div>
+
+          <div
+            className={activeLink === "Properties" ? "Link active" : "Link"}
+            onClick={() => setActiveLink("Properties")}
+          >
+            <Link to={`/profile/properties/${UserProfile.id}`}>
+              Properties
+            </Link>
           </div>
         </div>
         <div className={"Assets"}>

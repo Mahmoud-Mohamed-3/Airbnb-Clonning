@@ -14,7 +14,6 @@ export default function Wishlist() {
   const [unauthorized, setUnauthorized] = useState(false);
 
 
-  // Ensure the token is removed only once, and prevent duplication
   useEffect(() => {
     if (cookies.jwt) {
       document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/profile/wishlist; domain=localhost";
@@ -23,13 +22,13 @@ export default function Wishlist() {
 
   useEffect(() => {
     if (UserProfile) {
-      setUserWishlistedProperties(UserProfile.user_whishlisted_properties || []); // Assuming `wishlist` is the property in UserProfile
+      setUserWishlistedProperties(UserProfile.user_whishlisted_properties || []);
     }
   }, [UserProfile]);
 
   useEffect(() => {
     if (!cookies.jwt) {
-      setUnauthorized(true); // If no JWT token, set unauthorized
+      setUnauthorized(true);
     }
   }, [cookies]);
 
@@ -103,7 +102,7 @@ export default function Wishlist() {
     );
   }
 
-
+  console.log(userWishlistedProperties)
   return (
     <div className={"itemsContainer"}>
       <div
@@ -128,7 +127,7 @@ export default function Wishlist() {
                       <div className={"cont"} key={imgIndex}>
                         <Image
                           src={image}
-                          alt={`${card.country}-${card.owner}-${imgIndex}`}
+                          alt={`${card.country}-${card.owner.first_name}-${imgIndex}`}
                           preview={false}
                           className={"propertyImage"}
                         />
@@ -149,7 +148,7 @@ export default function Wishlist() {
                 }
               >
                 <Link
-                  to={`/property/${card.city}/${card.id}/${card.owner}/${card.user_id}`}
+                  to={`/property/${card.city}/${card.id}/${card.owner.first_name}/${card.user_id}`}
                 >
                   <div className={"propertyDetails"}>
                     <div className={"info"}>
@@ -163,7 +162,7 @@ export default function Wishlist() {
                     </div>
                     <div className={"owner"}>
                       Stay With{" "}
-                      <span style={{cursor: "pointer"}}>{card.owner}</span>
+                      <span style={{cursor: "pointer"}}>{card.owner.first_name}</span>
                     </div>
                     <div className={"duration"}>
                       {formatDateRange(card.start_date, card.end_date)}

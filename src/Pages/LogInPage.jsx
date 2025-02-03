@@ -6,10 +6,10 @@ import {Link, useNavigate} from "react-router-dom";
 
 export default function LogInPage() {
 
-  const [cookies , setCookies] = useCookies(["jwt"])
-  const navigate=useNavigate();
+  const [cookies, setCookies] = useCookies(["jwt"])
+  const navigate = useNavigate();
   useEffect(() => {
-    if(cookies.jwt){
+    if (cookies.jwt) {
       window.location.href = "/"
     }
   }, []);
@@ -26,15 +26,14 @@ export default function LogInPage() {
 
     window.google.accounts.id.renderButton(
       document.getElementById("google-login-btn"),
-      { theme: "outline", size: "large" } // Customize as needed
+      {theme: "outline", size: "large"}
     );
   }, []);
 
   const handleGoogleLogin = async (response) => {
     try {
       const idToken = response.credential;
-      // Send the token to your backend for verification
-      const [apiResponse, token, error] = await loginApi({ google_token: idToken });
+      const [apiResponse, token, error] = await loginApi({google_token: idToken});
 
       if (apiResponse) {
         setCookies('jwt', token);
@@ -54,7 +53,7 @@ export default function LogInPage() {
 
   const handleSubmit = async () => {
     const [response, token, error] = await loginApi({
-      user: { email, password },
+      user: {email, password},
     });
 
     if (response) {
@@ -64,10 +63,8 @@ export default function LogInPage() {
         navigate("/");
       }, 2000);
     } else if (error) {
-      // Display error message from API
       message.error(error);
     } else {
-      // Fallback error message
       message.error("Wrong email or password");
     }
   };

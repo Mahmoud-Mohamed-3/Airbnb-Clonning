@@ -17,7 +17,7 @@ import {AddReviewApi} from "../APIs/Reviews/AddReview.jsx";
 
 import dayjs from 'dayjs';
 
-const ShowProperty = () => {
+const ShowProperty = ({setState}) => {
   const {id} = useParams();
   const [property, setProperty] = useState(null);
   const [user, setUser] = useState(null);
@@ -73,7 +73,7 @@ const ShowProperty = () => {
 
   return (
     <>
-      <NavBar user={user} setUser={setUser}/>
+      <NavBar user={user} setUser={setUser} setState={setState}/>
       <Property
         property={property}
         user={user}
@@ -231,7 +231,7 @@ function ImagesCarousel({property}) {
   return (
     <div className={"ImagesCarousel"}>
       <Carousel draggable={true} arrows={true}
-                style={{height: "400px"}}> {/* Use viewport height for responsiveness */}
+                style={{height: "400px"}}>
         {property.images.map((image, index) => {
           return (
             <div key={index} style={{height: "100%", width: "100%"}}>
@@ -265,17 +265,17 @@ function LeftColumn({property}) {
   const cancellationDate = new Date(property.start_date);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = date.getDate(); // Get the day (1-31)
-    const month = date.toLocaleString('default', {month: 'short'}); // Get the abbreviated month name (e.g., "Jan")
-    const year = date.getFullYear(); // Get the full year (e.g., 2023)
-    return `${day} ${month} ${year}`; // Format as "DD MMM YYYY"
+    const day = date.getDate();
+    const month = date.toLocaleString('default', {month: 'short'});
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
   };
   const [propertyOwner, setPropertyOwner] = useState(null);
   cancellationDate.setDate(cancellationDate.getDate() - 10)
   useEffect(() => {
     async function fetchOwner() {
       if (property) {
-        const [data, error] = await GetPropertyOwnerApi(property.user_id);
+        const [data, error] = await GetPropertyOwnerApi(property.id);
         if (data) {
           setPropertyOwner(data);
         }
@@ -350,10 +350,10 @@ function ProcessRating({property, propertyOwner}) {
   const cancellationDate = new Date(property.start_date);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = date.getDate(); // Get the day (1-31)
-    const month = date.toLocaleString('default', {month: 'short'}); // Get the abbreviated month name (e.g., "Jan")
-    const year = date.getFullYear(); // Get the full year (e.g., 2023)
-    return `${day} ${month} ${year}`; // Format as "DD MMM YYYY"
+    const day = date.getDate();
+    const month = date.toLocaleString('default', {month: 'short'});
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
   };
   cancellationDate.setDate(cancellationDate.getDate() - 10)
   return (
@@ -817,11 +817,9 @@ function ReviewModal({cookies, open, setOpen, property}) {
         property_id: property.id
       });
 
-      // Success message and close the modal
       message.success("Review added successfully");
       setOpen(false);
 
-      // Reload the page after a short delay
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -922,7 +920,7 @@ function Reviews({propertyReviews, visibleCount}) {
   const toggleExpand = (index) => {
     setExpandedReviews((prev) => ({
       ...prev,
-      [index]: !prev[index], // Toggle the specific review's expanded state
+      [index]: !prev[index],
     }));
   };
   const [expandedReviews, setExpandedReviews] = useState({});

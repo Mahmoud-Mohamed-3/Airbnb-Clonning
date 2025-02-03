@@ -12,11 +12,17 @@ import UserProfilePageLayout from "../Pages/UserProfilePageLayout.jsx";
 import UserProfile from "../Pages/UserProfile.jsx";
 import Wishlist from "../Pages/Wishlist.jsx";
 import YourRequests from "../Pages/Requests.jsx";
+import YourProperties from "../Pages/YourProperties.jsx";
+import CreateNewProperty from "../Pages/CreateNewProperty.jsx";
+import {useState} from "react";
+import ShowPropertyForOwner from "../Pages/ShowPropertyForOwner.jsx"; // Ensure useState is imported
 
 export default function AppRoutes() {
+  const [state, setState] = useState('');
+
   return (
     <Routes>
-      <Route path="/" element={<HomePage/>}/>
+      <Route path="/" element={<HomePage setState={setState}/>}/>
       <Route path="/sign_up" element={<SignUp/>}/>
       <Route path="/login" element={<LogInPage/>}/>
       <Route path="/reset_password" element={<ForgetPassword/>}/>
@@ -24,14 +30,18 @@ export default function AppRoutes() {
       <Route path="/confirm_account" element={<ConfirmPage/>}/>
       <Route
         path="/property/:city/:id/:owner/:user_id"
-        element={<ShowProperty/>}
+        element={<ShowProperty setState={setState}/>}
       />
+      <Route path={'/property/create_new'} element={<CreateNewProperty state={state}/>}/>
+
       <Route path="/reservation/:property_id" element={<ConfirmReservationPage/>}/>
       <Route element={<UserProfilePageLayout/>}>
         <Route path={'/profile/:id'} element={<UserProfile/>}/>
         <Route path={'/profile/received_reservations/:id'} element={<ReceivedReservations/>}/>
         <Route path={'/profile/wishlist/:id'} element={<Wishlist/>}/>
         <Route path={"/profile/requests/:id"} element={<YourRequests/>}/>
+        <Route path={"/profile/properties/:id"} element={<YourProperties setState={setState}/>}/>
+        <Route path={'/profile/property/:id'} element={<ShowPropertyForOwner/>}/>
       </Route>
     </Routes>
   );

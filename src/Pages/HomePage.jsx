@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {GetCurrentUserApi} from "../APIs/User/Current_user.jsx";
 import Items from "../components/Items.jsx";
 
-export default function HomePage() {
+export default function HomePage({setState}) {
   const [cookies, setCookie, removeCookie] = useCookies([]);
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -26,10 +26,9 @@ export default function HomePage() {
       fetchUser();
     }
   }, [cookies.jwt]);
-  // console.log(user)
   return (
     <>
-      <NavBar user={user} setUser={setUser}/>
+      <NavBar user={user} setUser={setUser} setState={setState}/>
       <Items user={user}/>
     </>
   );

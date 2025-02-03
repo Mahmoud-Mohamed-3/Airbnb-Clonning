@@ -11,13 +11,13 @@ export const GetProperties = async (token) => {
       },
     );
     if (response.status === 200) {
-      return [response.data, null]; // Return data and no error
+      return [response.data, null];
     } else {
-      return [null, "Unexpected response status"]; // Handle unexpected status codes
+      return [null, "Unexpected response status"];
     }
   } catch (error) {
-    console.error("Error fetching properties:", error); // Log the actual error
+    console.error("Error fetching properties:", error);
     return [null, error.message || "An error occurred"];
-    // Return null for data and the error message
+
   }
 };

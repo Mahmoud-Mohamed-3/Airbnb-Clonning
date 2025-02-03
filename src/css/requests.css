@@ -1,125 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:where(.css-dev-only-do-not-override-161f05s).ant-pagination .ant-pagination-item-active {
+  border-color: #ff5a5f;
+}
+:where(.css-dev-only-do-not-override-161f05s).ant-pagination .ant-pagination-item-active:hover {
+  border-color: #ff5a5f;
 }
 
-.MainRequestsContainer {
-  width: 100%;
-  max-width: 100%;
-  font-family: "Roboto";
-  margin: 0 auto;
-  padding-top: 30px;
+:where(.css-dev-only-do-not-override-161f05s).ant-pagination .ant-pagination-item-active a {
+  color: #ff5a5f;
 }
-.MainRequestsContainer .RequestsContainer {
-  padding: 50px 10px;
-  margin: 0 auto;
-  width: 80%;
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.MainRequestsContainer .RequestsContainer h1 {
-  font-size: 30px;
-  font-weight: 700;
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #f1f1f1;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard:hover {
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent .PropertyPlace {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 20px;
-  font-weight: 700;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent .status {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  padding: 4px 10px;
-  border: 1px solid #f1f1f1;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent .status.pending {
-  background-color: #f1f1f1;
-  color: #333;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent .status.approved {
-  background-color: #4caf50;
-  color: #fff;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .UpperContent .status.rejected {
-  background-color: #f44336;
-  color: #fff;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .LowerContent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 20px;
-  margin-top: 12px;
-}
-.MainRequestsContainer .RequestsContainer .RequestCard .content .LowerContent .PropertyOwner span, .MainRequestsContainer .RequestsContainer .RequestCard .content .LowerContent .PropertyType span, .MainRequestsContainer .RequestsContainer .RequestCard .content .LowerContent .PricePerNight span {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 20px;
-  font-weight: 700;
+
+:where(.css-dev-only-do-not-override-161f05s).ant-pagination .ant-pagination-item-active:hover a {
+  color: #ff5a5f;
 }

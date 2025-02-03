@@ -68,9 +68,9 @@ function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
   const [isDisabled, setIsDisabled] = useState(false);
   const formatDate = (date) => {
     return dayjs(date).format("DD-MM-YYYY");
-  }// Ensure the date is in dayjs format and then format it
+  }
   const formatSubmitDate = (date) => {
-    return dayjs(date).format("YYYY-MM-DD"); // Ensure the date is in dayjs format and then format it
+    return dayjs(date).format("YYYY-MM-DD");
   }
 
   const AddReservation = async () => {
@@ -165,7 +165,7 @@ function LeftSide({start_date, end_date, total_price, cookies, property_id}) {
 
 function RightSide({start_date, end_date, total_price, number_of_days, property_id}) {
   const formatDate = (date) => {
-    return dayjs(date).format("DD-MM-YYYY"); // Ensure the date is in dayjs format and then format it
+    return dayjs(date).format("DD-MM-YYYY");
   };
   const [property, setProperty] = useState(null);
   useEffect(() => {

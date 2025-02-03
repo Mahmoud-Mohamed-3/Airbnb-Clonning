@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import { Form, Image, Input, Upload, Button, message } from "antd";
+import {useEffect, useState} from "react";
+import {Button, Form, Image, Input, message, Upload} from "antd";
 import "../css/login_and_sign_in_page.css";
 import axios from "axios";
-import { useCookies } from "react-cookie";
-import { Link } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
+import {useCookies} from "react-cookie";
+import {Link} from "react-router-dom";
 
 export default function SignUp() {
   const [fileList, setFileList] = useState([]);
@@ -20,13 +19,11 @@ export default function SignUp() {
     }
   }, [cookies]);
 
-  // Handle file change
-  const handleFileChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const handleFileChange = ({fileList: newFileList}) => setFileList(newFileList);
 
-  // Validate file before upload
   const beforeUpload = (file) => {
     const isImage = file.type === "image/jpeg" || file.type === "image/png";
-    const isLt3M = file.size / 1024 / 1024 < 3; // File size < 3MB
+    const isLt3M = file.size / 1024 / 1024 < 3;
 
     if (!isImage) {
       message.error("You can only upload JPG/PNG files!");
@@ -35,7 +32,7 @@ export default function SignUp() {
       message.error("File must be smaller than 3MB!");
     }
 
-    return isImage && isLt3M; // Only allow files that pass all validations
+    return isImage && isLt3M;
   };
 
   const handleSubmit = async () => {
@@ -74,40 +71,6 @@ export default function SignUp() {
     }
   };
 
-  // Handle Google Sign-In
-  // const handleGoogleSignUp = async (response) => {
-  //   if (response.error) {
-  //     message.error("Google sign-in failed");
-  //     return;
-  //   }
-  //
-  //   const id_token = response.tokenId;
-  //
-  //   const formData = new FormData();
-  //   formData.append("user[email]", response.profileObj.email);
-  //   formData.append("user[first_name]", response.profileObj.givenName);
-  //   formData.append("user[last_name]", response.profileObj.familyName);
-  //   formData.append("user[google_id]", response.profileObj.googleId);
-  //
-  //   try {
-  //     const res = await axios.post("http://localhost:3000/google_sign_in/callback", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //
-  //     if (res.status === 200) {
-  //       message.success("Account created successfully with Google!");
-  //       setTimeout(() => {
-  //         window.location.href = "/login";
-  //       }, 2000);
-  //     } else {
-  //       message.error("An unexpected error occurred. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     message.error("Error occurred while creating account with Google.");
-  //   }
-  // };
 
   return (
     <div className={"mainFormContainer"}>
@@ -126,7 +89,7 @@ export default function SignUp() {
             <Form.Item
               label={"First Name"}
               name="first_name"
-              rules={[{ required: true, message: "Please input your first name!" }]}
+              rules={[{required: true, message: "Please input your first name!"}]}
             >
               <Input
                 placeholder="First Name"
@@ -138,7 +101,7 @@ export default function SignUp() {
             <Form.Item
               label={"Last Name"}
               name="last_name"
-              rules={[{ required: true, message: "Please input your last name!" }]}
+              rules={[{required: true, message: "Please input your last name!"}]}
             >
               <Input
                 placeholder="Last Name"
@@ -150,7 +113,7 @@ export default function SignUp() {
             <Form.Item
               label={"Email"}
               name="email"
-              rules={[{ required: true, message: "Please input your email!" }]}
+              rules={[{required: true, message: "Please input your email!"}]}
             >
               <Input
                 type="email"
@@ -163,7 +126,7 @@ export default function SignUp() {
             <Form.Item
               label={"Password"}
               name="password"
-              rules={[{ required: true, message: "Please input your password!", min: 6 }]}
+              rules={[{required: true, message: "Please input your password!", min: 6}]}
             >
               <Input
                 type="password"
@@ -185,19 +148,11 @@ export default function SignUp() {
               </Upload>
             </Form.Item>
             <Form.Item>
-              <Button className={"btn"} type="primary" htmlType="submit" style={{':hover': { backgroundColor: "#FF5A5FFF" }}}>
+              <Button className={"btn"} type="primary" htmlType="submit"
+                      style={{':hover': {backgroundColor: "#FF5A5FFF"}}}>
                 Sign Up
               </Button>
             </Form.Item>
-            {/* Google Sign-In Button */}
-            {/*<GoogleLogin*/}
-            {/*  clientId="572508878231-ritv9flo5nbv3rsbr480f7ommvfkl8a3.apps.googleusercontent.com"*/}
-            {/*  buttonText="Sign in Using Google"*/}
-            {/*  onSuccess={handleGoogleSignUp}*/}
-            {/*  onFailure={handleGoogleSignUp}*/}
-            {/*  cookiePolicy={"single_host_origin"}*/}
-            {/*  uxMode="redirect"*/}
-            {/*/>*/}
             <Link to={"/login"}>Already Have An Account?</Link>
           </Form>
         </div>

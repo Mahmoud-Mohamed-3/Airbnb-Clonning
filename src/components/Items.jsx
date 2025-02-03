@@ -1,17 +1,17 @@
 import "../css/items.css";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import { GetProperties } from "../APIs/Properties/GetProperties.jsx";
-import { Card, Carousel, Col, Image, message, Row, Spin } from "antd";
-import { HeartFilled, HeartOutlined, StarFilled } from "@ant-design/icons";
-import { format } from "date-fns";
-import { useCookies } from "react-cookie";
-import { AddToWishlistApi } from "../APIs/Wishlist/AddToWishlist.jsx";
-import { RemoveFromWishlistApi } from "../APIs/Wishlist/RemoveFromWishlist.jsx";
-import { GetAllFavourites } from "../APIs/Wishlist/GetAllFavourites.jsx";
-import { Link } from "react-router-dom";
+import {GetProperties} from "../APIs/Properties/GetProperties.jsx";
+import {Card, Carousel, Col, Image, message, Row, Spin} from "antd";
+import {HeartFilled, HeartOutlined, StarFilled} from "@ant-design/icons";
+import {format} from "date-fns";
+import {useCookies} from "react-cookie";
+import {AddToWishlistApi} from "../APIs/Wishlist/AddToWishlist.jsx";
+import {RemoveFromWishlistApi} from "../APIs/Wishlist/RemoveFromWishlist.jsx";
+import {GetAllFavourites} from "../APIs/Wishlist/GetAllFavourites.jsx";
+import {Link} from "react-router-dom";
 
-export default function Items({ user }) {
+export default function Items({user}) {
   const [properties, setProperties] = useState([]);
   const [favorites, setFavorites] = useState({});
   const [cookies] = useCookies([]);
@@ -97,9 +97,9 @@ export default function Items({ user }) {
 
     try {
       if (!isFavorite) {
-        await AddToFavourites(id); // Add to favorites if not already a favorite
+        await AddToFavourites(id);
       } else {
-        await RemoveFromFavourites(id); // Remove from favorites if already a favorite
+        await RemoveFromFavourites(id);
       }
     } catch (err) {
       console.error("An error occurred while toggling favorite:", err);
@@ -115,8 +115,6 @@ export default function Items({ user }) {
     const formattedEndDate = format(new Date(endDate), "ddMMM");
     return `${formattedStartDate} - ${formattedEndDate}`;
   };
-
-  // Show loading state if properties are not yet loaded
   if (!properties.length) {
     return (
       <div
@@ -129,7 +127,7 @@ export default function Items({ user }) {
         }}
       >
         <div className="loader">
-          <Spin size="large" spinning={true} />
+          <Spin size="large" spinning={true}/>
         </div>
       </div>
     );
@@ -150,13 +148,13 @@ export default function Items({ user }) {
                       <div className={"cont"} key={imgIndex}>
                         <Image
                           src={image}
-                          alt={`${card.country}-${card.owner}-${imgIndex}`}
+                          alt={`${card.country}-${card.owner.first_name}-${imgIndex}`}
                           preview={false}
                           className={"propertyImage"}
                         />
                         {user && (
                           <div className="heart-container">
-                            {favorites[card.id] ? ( // Use card.id instead of index
+                            {favorites[card.id] ? (
                               <HeartFilled
                                 className={"heart added"}
                                 onClick={() => toggleFavorite(card.id)}
@@ -175,7 +173,7 @@ export default function Items({ user }) {
                 }
               >
                 <Link
-                  to={`/property/${card.city}/${card.id}/${card.owner}/${card.user_id}`}
+                  to={`/property/${card.city}/${card.id}/${card.owner.first_name}/${card.user_id}`}
                 >
                   <div className={"propertyDetails"}>
                     <div className={"info"}>
@@ -183,13 +181,13 @@ export default function Items({ user }) {
                         {card.city} - {card.country}
                       </div>
                       <div className={"rate"}>
-                        <StarFilled style={{ color: "gold" }} />
+                        <StarFilled style={{color: "gold"}}/>
                         {card.property_rate}
                       </div>
                     </div>
                     <div className={"owner"}>
                       Stay With{" "}
-                      <span style={{ cursor: "pointer" }}>{card.owner}</span>
+                      <span style={{cursor: "pointer"}}>{card.owner.first_name}</span>
                     </div>
                     <div className={"duration"}>
                       {formatDateRange(card.start_date, card.end_date)}

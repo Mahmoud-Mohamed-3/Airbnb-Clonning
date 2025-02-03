@@ -1,7 +1,7 @@
-import { Button, Form, Image, Input, message } from "antd";
-import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate, useLocation } from "react-router-dom";
+import {Button, Form, Image, Input, message} from "antd";
+import {useEffect, useState} from "react";
+import {useCookies} from "react-cookie";
+import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 export default function EditPasswordPage() {
@@ -12,7 +12,6 @@ export default function EditPasswordPage() {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  // Extract token from the query parameters
   const queryParams = new URLSearchParams(location.search);
   const token = queryParams.get("token");
 
@@ -63,14 +62,14 @@ export default function EditPasswordPage() {
         <div className={"form"}>
           <Form
             layout={"vertical"}
-            onFinish={handleSubmit} // On successful form validation, trigger the handleSubmit
+            onFinish={handleSubmit}
           >
             <Form.Item
               label={"Password"}
               name="password"
               rules={[
-                { required: true, message: "Please input your password!" },
-                { min: 6, message: "Password must be at least 6 characters long." },
+                {required: true, message: "Please input your password!"},
+                {min: 6, message: "Password must be at least 6 characters long."},
               ]}
             >
               <Input.Password
@@ -85,8 +84,8 @@ export default function EditPasswordPage() {
               label={"Confirm Your Password"}
               name="password_confirmation"
               rules={[
-                { required: true, message: "Please confirm your password!" },
-                { min: 6, message: "Password confirmation must be at least 6 characters long." },
+                {required: true, message: "Please confirm your password!"},
+                {min: 6, message: "Password confirmation must be at least 6 characters long."},
                 {
                   validator: (_, value) =>
                     value && value === password

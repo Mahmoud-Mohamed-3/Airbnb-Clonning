@@ -13,14 +13,13 @@ export const AddToWishlistApi = async (token, item_id) => {
       {
         headers: {
           Authorization: token,
-          // content: "application/json",
         },
       },
     );
     if (response.status === 200) {
-      return [response.data, null]; // Return the response data and no error
+      return [response.data, null];
     }
   } catch (error) {
-    return [null, error.response ? error.response.data : "Error"]; // Return the error response if available
+    return [null, error.response ? error.response.data : "Error"];
   }
 };

@@ -2,15 +2,15 @@ import {useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
 import {useOutletContext} from "react-router-dom";
 import {message} from "antd";
-import {ConfirmReservationApi} from "../APIs/Properties/ConfirmReservation.jsx"; // Assuming you use Ant Design for messages
+import {ConfirmReservationApi} from "../APIs/Properties/ConfirmReservation.jsx";
 import "../css/received_reservations.css";
 
 export default function ReceivedReservations() {
   const [reservations, setReservations] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
   const {UserProfile, setUserProfile} = useOutletContext();
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [error, setError] = useState(null); // Track error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
 
   useEffect(() => {
@@ -18,17 +18,14 @@ export default function ReceivedReservations() {
       setReservations(UserProfile.user_received_reservations);
       setLoading(false);
     } else {
-      setLoading(false); // Stop loading if UserProfile is not available
+      setLoading(false);
       setError("User profile or reservations are not available.");
     }
   }, [UserProfile]);
 
-  // Handle cookie removal (ensure this doesn't fire unnecessarily)
   useEffect(() => {
     if (cookies.jwt) {
-      // removeCookie("jwt", {path: "/profile/wishlist", domain: "localhost"});
 
-      // Make sure the cookie is deleted properly
       document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/profile/received_reservations; domain=localhost";
     }
   }, [cookies.jwt, removeCookie]);
@@ -45,7 +42,6 @@ export default function ReceivedReservations() {
     }
 
     try {
-      // Assuming ConfirmReservationApi is an external function that confirms the reservation
       const [response, error] = await ConfirmReservationApi(cookies.jwt, id, {status});
       if (response) {
         message.success(response.message || `Reservation ${status}!`);
@@ -54,15 +50,17 @@ export default function ReceivedReservations() {
             reservation.id === id ? {...reservation, status} : reservation
           )
         );
+        window.location.reload();
       } else {
         throw new Error(error?.message || "An error occurred while updating reservation.");
+
       }
     } catch (error) {
       console.error("Error confirming reservation:", error);
+      window.location.reload();
       message.error(error.message || "An error occurred. Please try again.");
     }
   };
-  // Button Handlers
   const handleConfirm = (id) => handleResponse(id, "approved");
   const handleReject = (id) => handleResponse(id, "rejected");
 

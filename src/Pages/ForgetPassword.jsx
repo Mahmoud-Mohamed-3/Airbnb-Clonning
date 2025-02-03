@@ -1,37 +1,36 @@
 import {Button, Form, Image, Input, message} from "antd";
 import {useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
-import {loginApi} from "../APIs/User/LoginApi.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 export default function LogInPage() {
 
-  const [cookies , setCookies] = useCookies(["jwt"])
-  const navigate=useNavigate();
+  const [cookies, setCookies] = useCookies(["jwt"])
+  const navigate = useNavigate();
   useEffect(() => {
-    if(cookies.jwt){
+    if (cookies.jwt) {
       window.location.href = "/"
     }
   }, [cookies.jwt]);
   const [email, setEmail] = useState("");
-const handelSubmit = async ()=>{
-  try{
-    const response = await axios.post("http://localhost:3000/users/password",{
-      user:{email}
-    },{
-      headers:{
-        "Content-Type":"application/json"
-      }
-    });
-    if (response.status === 200) {
-      message.success("Reset password link sent to your email");
+  const handelSubmit = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/users/password", {
+        user: {email}
+      }, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      if (response.status === 200) {
+        message.success("Reset password link sent to your email");
 
+      }
+    } catch (error) {
+      message.error("Something went wrong")
     }
-  }catch(error){
-    message.error("Something went wrong")
   }
-}
 
   return (
     <div className={"mainFormContainer"}>
@@ -46,20 +45,19 @@ const handelSubmit = async ()=>{
         </div>
         <h1>Reset Password</h1>
         <div className={"form"}>
-          <Form layout={"vertical"} >
-            <Form.Item label={"Email"} name="email" rules={[{required: true, message: 'Please input your email!'}]} value ={email} onChange={(e)=>{
+          <Form layout={"vertical"}>
+            <Form.Item label={"Email"} name="email" rules={[{required: true, message: 'Please input your email!'}]}
+                       value={email} onChange={(e) => {
               setEmail(e.target.value);
             }}>
-              <Input type="email" placeholder="Email" className={"inputField"} />
+              <Input type="email" placeholder="Email" className={"inputField"}/>
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" onClick={handelSubmit}>
                 Reset Password
               </Button>
             </Form.Item>
-
           </Form>
-
         </div>
       </div>
     </div>
